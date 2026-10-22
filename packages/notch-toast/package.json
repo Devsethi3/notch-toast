@@ -10,6 +10,7 @@
     "motion"
   ],
   "license": "MIT",
+  "homepage": "https://notch-toast.vercel.app/",
   "sideEffects": false,
   "type": "module",
   "main": "./dist/index.js",
@@ -39,7 +40,11 @@
   },
   "repository": {
     "type": "git",
+    "url": "git+https://github.com/Devsethi3/notch-toast.git",
     "directory": "packages/notch-toast"
+  },
+  "bugs": {
+    "url": "https://github.com/Devsethi3/notch-toast/issues"
   },
   "peerDependencies": {
     "motion": ">=12.0.0 <15.0.0",
