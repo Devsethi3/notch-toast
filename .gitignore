@@ -17,6 +17,7 @@
 
 # production
 /build
+/packages/notch-toast/dist
 
 # misc
 .DS_Store

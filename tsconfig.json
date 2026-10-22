@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*"],
+      "notch-toast": ["./packages/notch-toast/src/index.tsx"]
     }
   },
   "include": [
