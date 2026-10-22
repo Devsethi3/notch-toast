@@ -1,0 +1,109 @@
+/* Shiki Light/Dark Mode */
+html.light .shiki,
+html.light .shiki span {
+  font-family: var(--font-mono);
+  background-color: transparent !important;
+}
+
+html.dark .shiki,
+html.dark .shiki span {
+  font-family: var(--font-mono);
+  color: var(--shiki-dark) !important;
+  background-color: transparent !important;
+}
+
+/* Base Shiki Pre & Span Styles */
+pre.shiki {
+  @apply py-3;
+}
+
+pre.shiki span.line {
+  @apply px-4 py-0.5;
+}
+
+/* Shiki Word Wrap */
+pre.shiki-word-wrap {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+pre.shiki-word-wrap span.line {
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+  padding-top: 0.2px;
+  padding-bottom: 0.2px;
+}
+
+/* Shiki Line Numbers */
+pre.shiki-line-numbers code {
+  counter-reset: step;
+  counter-increment: step 0;
+  .line {
+    &::before {
+      counter-increment: step;
+      @apply mr-6 inline-block border-transparent text-right text-xs whitespace-nowrap text-neutral-500 content-[counter(step)];
+    }
+  }
+}
+
+/* Shiki Highlight */
+pre span.shiki-line-highlight {
+  @apply relative z-0 inline-block w-full;
+  &::after {
+    content: "";
+    @apply absolute top-0 left-0 -z-10 h-full w-full border-l-2 border-neutral-400 bg-neutral-500/20! opacity-40;
+  }
+}
+
+/* Shiki Notation Diff */
+pre.has-diff span.line.diff {
+  @apply relative inline-block w-full;
+}
+
+pre.has-diff span.line.diff.add {
+  @apply bg-emerald-300/20! dark:bg-emerald-700/20!;
+  &::before {
+    content: "+";
+    @apply absolute left-2 text-green-600 dark:text-green-400;
+  }
+}
+
+pre.has-diff span.line.diff.remove {
+  @apply bg-red-300/20! opacity-70 dark:bg-red-600/20!;
+  &::before {
+    content: "-";
+    @apply absolute left-2 text-red-600 dark:text-red-400;
+  }
+}
+
+/* Shiki Notation Focus */
+pre.shiki-has-focused .line:not(.focused) {
+  @apply opacity-50 blur-[0.8px] transition-opacity duration-200 ease-in-out;
+}
+
+pre.shiki-has-focused:hover .line:not(.focused) {
+  @apply opacity-100 blur-none;
+}
+
+/* Shiki Line Anchors */
+pre.shiki-line-anchors .line:target {
+  @apply scroll-mt-14 bg-blue-400/15! dark:bg-blue-600/15!;
+}
+
+pre.shiki-line-numbers.shiki-line-anchors code .line::before {
+  @apply cursor-pointer transition-colors select-none;
+}
+
+pre.shiki-line-numbers.shiki-line-anchors code .line::before:hover {
+  @apply text-blue-500 underline dark:text-blue-400;
+}
+
+/* Shiki Highlighted Word */
+pre span.shiki-word-highlight {
+  @apply relative z-0 inline-block rounded-sm px-0.5;
+  &::after {
+    content: "";
+    @apply absolute inset-0 -z-10 rounded-sm bg-neutral-500/25!;
+  }
+}

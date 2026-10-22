@@ -2,6 +2,17 @@
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react"
 
+import { CodeblockShiki } from "@/components/code-block/client/shiki"
+import {
+  CodeBlock,
+  CodeBlockContent,
+  CodeBlockGroup,
+  CodeBlockHeader,
+  CodeBlockIcon,
+} from "@/components/code-block/code-block"
+import { CopyButton } from "@/components/code-block/copy-button"
+import { DotField } from "@/components/dot-field"
+import Scrubber from "@/components/smoothui/scrubber"
 import {
   NotchToaster,
   toast,
@@ -171,28 +182,26 @@ export function NotchPlayground() {
   return (
     <section
       id="playground"
-      className="border-t border-border bg-background px-6 py-24"
+      className="relative isolate min-w-0 overflow-x-clip bg-background text-foreground"
     >
+      <div className="pointer-events-none absolute inset-0 -z-10 text-muted-foreground/70">
+        <DotField
+          gap={12}
+          maxRadius={2.4}
+          speed={0.7}
+          opacity={0.55}
+          clearArea={{ x: 0.5, y: 0.5, radiusX: 0.4, radiusY: 0.62 }}
+        />
+      </div>
       <NotchToaster position={position} mode={mode} animation={animation} />
 
-      <div className="mx-auto max-w-6xl">
-        <div className="mb-10 max-w-2xl">
-          <p className="text-sm font-medium text-muted-foreground">
-            Interactive playground
-          </p>
-          <h2 className="mt-3 text-3xl font-medium tracking-tight">
-            Tune the motion. Then trigger it.
-          </h2>
-          <p className="mt-3 text-muted-foreground">
-            These controls render the same package component that consumers
-            install.
-          </p>
-        </div>
-
-        <div className="grid overflow-hidden rounded-2xl border border-border bg-background shadow-sm lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="border-b border-border p-6 lg:border-r lg:border-b-0">
-            <div className="flex items-center justify-between">
-              <h3 className="font-medium">Examples</h3>
+      <div className="mx-auto w-full min-w-0 max-w-5xl px-4 sm:px-6">
+        <div className="grid min-w-0 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
+          <section className="min-w-0 pt-7">
+            <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+              <h2 className="text-lg font-medium">
+                Examples
+              </h2>
               <span className="text-xs text-muted-foreground">
                 Click to preview
               </span>
@@ -239,61 +248,74 @@ export function NotchPlayground() {
                 Every toast dismisses after the selected duration.
               </div>
             </div>
-          </div>
+          </section>
 
-          <div className="p-6 sm:p-8">
-            <div className="space-y-7">
-              <Control label="Position">
-                <Segmented
-                  options={positions}
-                  value={position}
-                  onChange={setPosition}
+          <section className="min-w-0 pt-7">
+            <div>
+              <h2 className="text-lg font-medium">Builder</h2>
+
+            </div>
+            <div className="mt-7 min-w-0 rounded-2xl border border-border bg-background p-4 shadow-sm sm:p-6">
+              <div className="space-y-6 sm:space-y-7">
+                <Control label="Position">
+                  <Segmented
+                    options={positions}
+                    value={position}
+                    onChange={setPosition}
+                  />
+                </Control>
+                <Control label="Display mode">
+                  <Segmented options={modes} value={mode} onChange={setMode} />
+                </Control>
+                <Control label="Animation preset">
+                  <Segmented
+                    options={animations}
+                    value={animation}
+                    onChange={setAnimation}
+                  />
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Fluid is the default. Gooey is intentionally expressive;
+                    smooth, subtle, and snappy refine the same motion system.
+                  </p>
+                </Control>
+                <Control label="Title">
+                  <input
+                    value={title}
+                    onChange={(event) => setTitle(event.target.value)}
+                    className="h-10 w-full rounded-lg border border-border bg-background px-3 text-sm transition-shadow outline-none focus-visible:ring-3 focus-visible:ring-ring/30"
+                  />
+                </Control>
+                <Scrubber
+                  label="Display duration"
+                  value={duration / 1000}
+                  onValueChange={(value) =>
+                    setDuration(Math.round(value * 1000))
+                  }
+                  min={1.5}
+                  max={8}
+                  step={0.1}
+                  decimals={1}
+                  ticks={7}
                 />
-              </Control>
-              <Control label="Display mode">
-                <Segmented options={modes} value={mode} onChange={setMode} />
-              </Control>
-              <Control label="Animation preset">
-                <Segmented
-                  options={animations}
-                  value={animation}
-                  onChange={setAnimation}
-                />
-                <p className="mt-2 text-xs text-muted-foreground">
-                  Fluid is the default. Gooey is intentionally expressive;
-                  smooth, subtle, and snappy refine the same motion system.
-                </p>
-              </Control>
-              <Control label="Title">
-                <input
-                  value={title}
-                  onChange={(event) => setTitle(event.target.value)}
-                  className="h-10 w-full rounded-lg border border-border bg-background px-3 text-sm transition-shadow outline-none focus-visible:ring-3 focus-visible:ring-ring/30"
-                />
-              </Control>
-              <Control
-                label={`Display duration · ${(duration / 1000).toFixed(1)}s`}
-              >
-                <input
-                  type="range"
-                  min="1500"
-                  max="8000"
-                  step="100"
-                  value={duration}
-                  onChange={(event) => setDuration(Number(event.target.value))}
-                  className="w-full accent-foreground"
-                />
-              </Control>
-              <div className="rounded-xl bg-muted p-4">
-                <p className="mb-3 text-xs font-medium tracking-wide text-muted-foreground uppercase">
-                  Generated code
-                </p>
-                <pre className="overflow-x-auto text-xs leading-5 text-foreground">
-                  <code>{code}</code>
-                </pre>
+                <CodeBlock className="min-w-0">
+                  <CodeBlockHeader>
+                    <CodeBlockGroup>
+                      <CodeBlockIcon language="tsx" />
+                      <span>Generated code</span>
+                    </CodeBlockGroup>
+                    <CopyButton content={code} />
+                  </CodeBlockHeader>
+                  <CodeBlockContent>
+                    <CodeblockShiki
+                      code={code}
+                      language="tsx"
+                      className="text-xs leading-5 text-foreground"
+                    />
+                  </CodeBlockContent>
+                </CodeBlock>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
     </section>

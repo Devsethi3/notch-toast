@@ -10,9 +10,8 @@ import {
 import { cn } from "@/lib/utils"
 
 const sections = [
-  { label: "Installation", href: "#installation" },
-  { label: "Setup", href: "#setup" },
-  { label: "Toast methods", href: "#toast-methods" },
+  { label: "Get started", href: "#installation" },
+  { label: "API reference", href: "#toast-methods" },
   { label: "Promise", href: "#promise" },
   { label: "Update & dismiss", href: "#update-dismiss" },
   { label: "Options", href: "#options" },
@@ -108,7 +107,7 @@ export function DocsSidebar() {
     <aside className="hidden lg:block">
       <div
         className="fixed top-24 z-10 w-[180px]"
-        style={{ left: "max(1.5rem, calc((100vw - 72rem) / 2 + 1.5rem))" }}
+        style={{ left: "max(1.5rem, calc((100vw - 64rem) / 2 + 1.5rem))" }}
       >
         <nav
           ref={containerRef}

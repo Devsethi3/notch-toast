@@ -1,24 +1,45 @@
-import Link from "next/link"
-
+import { CodeblockShiki } from "@/components/code-block/client/shiki"
+import {
+  CodeBlock as BaseCodeBlock,
+  CodeBlockContent,
+  CodeBlockGroup,
+  CodeBlockHeader,
+  CodeBlockIcon,
+} from "@/components/code-block/code-block"
+import { CopyButton } from "@/components/code-block/copy-button"
+import { CodeBlockTabsPkg } from "@/components/code-block/blocks/copy-with-tabs-package-manager"
 import { DocsSidebar } from "@/components/docs/docs-sidebar"
-import Logo from "@/components/logo"
+import { SiteHeader } from "@/components/landing/site-header"
+import type { Languages } from "@/utils/shiki/highlight"
 
 type CodeBlockProps = {
   children: string
   label?: string
+  language?: Languages
 }
 
-function CodeBlock({ children, label = "tsx" }: CodeBlockProps) {
+function DocumentationCodeBlock({
+  children,
+  label = "tsx",
+  language = "tsx",
+}: CodeBlockProps) {
   return (
-    <div className="overflow-hidden rounded-xl border border-border bg-muted/35">
-      <div className="flex items-center justify-between border-b border-border px-4 py-2.5 text-xs text-muted-foreground">
-        <span>{label}</span>
-        <span>notch-toast</span>
-      </div>
-      <pre className="overflow-x-auto p-4 text-sm leading-6 text-foreground">
-        <code>{children}</code>
-      </pre>
-    </div>
+    <BaseCodeBlock>
+      <CodeBlockHeader>
+        <CodeBlockGroup>
+          <CodeBlockIcon language={language} />
+          <span className="truncate">{label}</span>
+        </CodeBlockGroup>
+        <CopyButton content={children} />
+      </CodeBlockHeader>
+      <CodeBlockContent>
+        <CodeblockShiki
+          code={children}
+          language={language}
+          className="text-sm leading-6 text-foreground"
+        />
+      </CodeBlockContent>
+    </BaseCodeBlock>
   )
 }
 
@@ -33,20 +54,16 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-2xl">
-      <p className="text-sm font-medium text-muted-foreground">{eyebrow}</p>
-      <h2 className="mt-2 text-3xl font-medium tracking-tight text-balance">
+      <p className="text-sm font-mono font-medium text-muted-foreground">{eyebrow}</p>
+      <h2 className="mt-2 text-2xl font-medium tracking-tight text-balance">
         {title}
       </h2>
-      <div className="mt-4 leading-7 text-pretty text-muted-foreground">
+      <div className="mt-2 leading-7 text-pretty text-muted-foreground">
         {children}
       </div>
     </div>
   )
 }
-
-const installation = `pnpm add notch-toast`
-
-const motionInstallation = `pnpm add motion`
 
 const setup = `// app/layout.tsx
 import { NotchToaster } from "notch-toast"
@@ -141,50 +158,35 @@ const configuredToaster = `<NotchToaster
 export default function DocsPage() {
   return (
     <main className="min-h-svh bg-background text-foreground">
-      <header className="sticky top-0 z-20 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-9">
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 text-lg font-medium tracking-tight"
-          >
-            <Logo className="size-4" title={null} />
-            notch-toast
-          </Link>
-          <Link
-            href="/#playground"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            Open playground
-          </Link>
-        </div>
-      </header>
+      <SiteHeader sticky />
 
-      <div className="mx-auto grid max-w-6xl items-start gap-12 px-6 py-7 lg:grid-cols-[180px_minmax(0,1fr)]">
+      <div className="mx-auto grid max-w-5xl items-start gap-12 px-6 py-7 lg:grid-cols-[180px_minmax(0,1fr)]">
         <DocsSidebar />
 
         <div className="min-w-0">
-          <div className="max-w-3xl border-b border-border pb-14">
+          <div className="max-w-3xl border-b border-border pb-10">
             <p className="font-mono text-sm font-medium text-muted-foreground">
               Documentation
             </p>
-            <h1 className="mt-3 text-2xl font-medium text-balance text-foreground/80">
+            <h1 className="mt-3 text-2xl font-medium text-balance text-foreground/90">
               Notch-style notifications for React.
             </h1>
-            <p className="mt-4 max-w-2xl text-sm text-balance text-foreground/70">
+            <p className="mt-2 max-w-2xl text-base text-balance text-foreground/70">
               A small toast API with an attached notch or floating dynamic
               island.
             </p>
           </div>
 
-          <div className="space-y-20 py-16">
+          <div className="space-y-20 py-10">
             <section id="installation" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="01 · Installation"
-                title="Add the package"
+                eyebrow="01) Get started"
+                title="Install, mount, and trigger"
               >
-                Add the package to your React project.
+                Add the package, mount one global toaster, then trigger it from
+                any client component.
               </SectionHeading>
-              <CodeBlock label="terminal">{installation}</CodeBlock>
+              <CodeBlockTabsPkg command="notch-toast" type="install" />
               <div className="space-y-4 rounded-xl border border-border bg-muted/20 p-5">
                 <p className="text-sm leading-6 text-muted-foreground">
                   <span className="font-medium text-foreground">
@@ -193,27 +195,20 @@ export default function DocsPage() {
                   Notch Toast uses Motion for its transitions. Install it once
                   alongside the package.
                 </p>
-                <CodeBlock label="terminal">{motionInstallation}</CodeBlock>
+                <CodeBlockTabsPkg command="motion" type="install" />
               </div>
-            </section>
-
-            <section id="setup" className="scroll-mt-24 space-y-7">
-              <SectionHeading eyebrow="02 · Setup" title="Mount one toaster">
-                Render a single{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">
-                  NotchToaster
-                </code>{" "}
-                near your application root. The package entry is client-ready,
-                so it can be composed directly in a Next.js layout.
-              </SectionHeading>
-              <CodeBlock>{setup}</CodeBlock>
-              <CodeBlock label="tsx · client component">{firstToast}</CodeBlock>
+              <DocumentationCodeBlock label="app/layout.tsx">
+                {setup}
+              </DocumentationCodeBlock>
+              <DocumentationCodeBlock label="SaveButton.tsx">
+                {firstToast}
+              </DocumentationCodeBlock>
             </section>
 
             <section id="toast-methods" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="03 · Toast methods"
-                title="Choose a status"
+                eyebrow="02) API reference"
+                title="Toast methods"
               >
                 Call the default{" "}
                 <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">
@@ -222,7 +217,7 @@ export default function DocsPage() {
                 function for neutral messages, or use a status helper when the
                 message has a semantic state. Each call returns its toast ID.
               </SectionHeading>
-              <CodeBlock>{toastMethods}</CodeBlock>
+              <DocumentationCodeBlock>{toastMethods}</DocumentationCodeBlock>
               <div className="overflow-x-auto rounded-xl border border-border">
                 <table className="w-full min-w-[540px] text-left text-sm">
                   <thead className="border-b border-border bg-muted/35 text-muted-foreground">
@@ -273,7 +268,7 @@ export default function DocsPage() {
 
             <section id="promise" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="04 · Promise"
+                eyebrow="03) Promise"
                 title="Morph progress into a result"
               >
                 Use{" "}
@@ -284,7 +279,7 @@ export default function DocsPage() {
                 updates that same island to success or error when the promise
                 settles.
               </SectionHeading>
-              <CodeBlock>{promise}</CodeBlock>
+              <DocumentationCodeBlock>{promise}</DocumentationCodeBlock>
               <p className="rounded-xl border border-border bg-muted/25 p-4 text-sm leading-6 text-muted-foreground">
                 <span className="font-medium text-foreground">Note:</span> the
                 returned promise preserves the original rejection. Handle or
@@ -294,7 +289,7 @@ export default function DocsPage() {
 
             <section id="update-dismiss" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="05 · Update and dismiss"
+                eyebrow="04) Update and dismiss"
                 title="Control the active island"
               >
                 Give a toast a stable ID to morph it in place. Use
@@ -308,7 +303,9 @@ export default function DocsPage() {
                 </code>{" "}
                 to remove it.
               </SectionHeading>
-              <CodeBlock>{updateAndDismiss}</CodeBlock>
+              <DocumentationCodeBlock>
+                {updateAndDismiss}
+              </DocumentationCodeBlock>
               <p className="text-sm leading-6 text-muted-foreground">
                 The toaster is intentionally latest-toast-wins: a new trigger
                 replaces the active island. Updating an active toast with the
@@ -318,13 +315,13 @@ export default function DocsPage() {
 
             <section id="options" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="06 · Options"
+                eyebrow="05) Options and duration"
                 title="Adjust a toast when needed"
               >
                 All toast helpers accept the same options object. Keep defaults
                 for short confirmations; make important feedback persistent.
               </SectionHeading>
-              <CodeBlock>{options}</CodeBlock>
+              <DocumentationCodeBlock>{options}</DocumentationCodeBlock>
               <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
                 <div className="bg-background p-5">
                   <code className="text-sm font-medium">id</code>
@@ -366,14 +363,16 @@ export default function DocsPage() {
 
             <section id="configuration" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="07 · Placement and motion"
+                eyebrow="06) Placement and motion"
                 title="Configure the presentation"
               >
                 Configure the mounted toaster once. Top-center attached is the
                 default; bottom-center automatically uses the matching attached
                 bottom notch.
               </SectionHeading>
-              <CodeBlock>{configuredToaster}</CodeBlock>
+              <DocumentationCodeBlock>
+                {configuredToaster}
+              </DocumentationCodeBlock>
               <div className="grid gap-5 sm:grid-cols-3">
                 <div className="rounded-xl border border-border p-5">
                   <h3 className="font-medium">Position</h3>
