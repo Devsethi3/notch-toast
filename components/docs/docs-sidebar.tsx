@@ -11,6 +11,8 @@ import { cn } from "@/lib/utils"
 
 const sections = [
   { label: "Get started", href: "#installation" },
+  { label: "shadcn/ui", href: "#shadcn" },
+  { label: "AI agents & skills", href: "#ai-agents" },
   { label: "API reference", href: "#toast-methods" },
   { label: "Promise", href: "#promise" },
   { label: "Update & dismiss", href: "#update-dismiss" },

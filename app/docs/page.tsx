@@ -54,7 +54,9 @@ function SectionHeading({
 }) {
   return (
     <div className="max-w-2xl">
-      <p className="text-sm font-mono font-medium text-muted-foreground">{eyebrow}</p>
+      <p className="font-mono text-sm font-medium text-muted-foreground">
+        {eyebrow}
+      </p>
       <h2 className="mt-2 text-2xl font-medium tracking-tight text-balance">
         {title}
       </h2>
@@ -90,6 +92,38 @@ export function SaveButton() {
     <button onClick={() => toast.success("Changes saved")}>Save</button>
   )
 }`
+
+const shadcnInstall =
+  "npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json"
+
+const shadcnUsage = [
+  "// app/layout.tsx",
+  'import { NotchToaster } from "@/components/ui/notch-toaster"',
+  "",
+  "export default function RootLayout({ children }: { children: React.ReactNode }) {",
+  "  return (",
+  '    <html lang="en">',
+  "      <body>",
+  "        {children}",
+  "        <NotchToaster />",
+  "      </body>",
+  "    </html>",
+  "  )",
+  "}",
+  "",
+  "// In a client component",
+  'import { notchToast } from "@/components/ui/notch-toaster"',
+  "",
+  'notchToast.success("Saved!")',
+].join("\n")
+
+const skillsInstall = "npx skills add Devsethi3/notch-toast"
+
+const directSkillInstall = [
+  "npx notch-toast add-skill            # -> .claude/skills/notch-toast/SKILL.md",
+  "npx notch-toast add-skill --agents   # also adds an AGENTS.md pointer",
+  "npx notch-toast add-skill --dir .cursor/skills/notch-toast",
+].join("\n")
 
 const toastMethods = `import { toast } from "notch-toast"
 
@@ -205,11 +239,60 @@ export default function DocsPage() {
               </DocumentationCodeBlock>
             </section>
 
-            <section id="toast-methods" className="scroll-mt-24 space-y-7">
+            <section id="shadcn" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="02) API reference"
-                title="Toast methods"
+                eyebrow="02) shadcn/ui"
+                title="Install a local wrapper"
               >
+                Add Notch Toast through the shadcn registry with one command. It
+                creates a thin wrapper in{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">
+                  components/ui
+                </code>{" "}
+                and installs the package and Motion dependency.
+              </SectionHeading>
+              <DocumentationCodeBlock label="Terminal" language="bash">
+                {shadcnInstall}
+              </DocumentationCodeBlock>
+              <DocumentationCodeBlock label="app/layout.tsx">
+                {shadcnUsage}
+              </DocumentationCodeBlock>
+              <p className="rounded-xl border border-border bg-muted/25 p-4 text-sm leading-6 text-muted-foreground">
+                The generated component is intentionally a small local wrapper.
+                Keep one <code>NotchToaster</code> mounted in your layout and
+                call <code>notchToast</code> from client components.
+              </p>
+            </section>
+
+            <section id="ai-agents" className="scroll-mt-24 space-y-7">
+              <SectionHeading
+                eyebrow="03) AI agents & skills"
+                title="Give your agent the right context"
+              >
+                The bundled skill teaches coding agents the API, the required
+                toaster mount, and the dismissible-toast behavior before they
+                add notifications to your app.
+              </SectionHeading>
+              <div className="space-y-3">
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Install it from the skills registry:
+                </p>
+                <DocumentationCodeBlock label="Terminal" language="bash">
+                  {skillsInstall}
+                </DocumentationCodeBlock>
+              </div>
+              <div className="space-y-3">
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Or install the bundled skill directly from the package:
+                </p>
+                <DocumentationCodeBlock label="Terminal" language="bash">
+                  {directSkillInstall}
+                </DocumentationCodeBlock>
+              </div>
+            </section>
+
+            <section id="toast-methods" className="scroll-mt-24 space-y-7">
+              <SectionHeading eyebrow="04) API reference" title="Toast methods">
                 Call the default{" "}
                 <code className="rounded bg-muted px-1.5 py-0.5 text-foreground">
                   toast()
@@ -268,7 +351,7 @@ export default function DocsPage() {
 
             <section id="promise" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="03) Promise"
+                eyebrow="05) Promise"
                 title="Morph progress into a result"
               >
                 Use{" "}
@@ -289,7 +372,7 @@ export default function DocsPage() {
 
             <section id="update-dismiss" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="04) Update and dismiss"
+                eyebrow="06) Update and dismiss"
                 title="Control the active island"
               >
                 Give a toast a stable ID to morph it in place. Use
@@ -315,7 +398,7 @@ export default function DocsPage() {
 
             <section id="options" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="05) Options and duration"
+                eyebrow="07) Options and duration"
                 title="Adjust a toast when needed"
               >
                 All toast helpers accept the same options object. Keep defaults
@@ -363,7 +446,7 @@ export default function DocsPage() {
 
             <section id="configuration" className="scroll-mt-24 space-y-7">
               <SectionHeading
-                eyebrow="06) Placement and motion"
+                eyebrow="08) Placement and motion"
                 title="Configure the presentation"
               >
                 Configure the mounted toaster once. Top-center attached is the

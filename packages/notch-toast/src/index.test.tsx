@@ -206,6 +206,17 @@ describe("notch-toast", () => {
     expect(screen.getByRole("status").getAttribute("aria-live")).toBe("polite")
   })
 
+  it("shows the close button for any toast when dismissible is enabled", async () => {
+    renderToaster()
+
+    emitToast(() => toast.success("Saved", { dismissible: true }))
+
+    fireEvent.click(
+      screen.getByRole("button", { name: "Dismiss notification" })
+    )
+    await waitFor(() => expect(screen.queryByRole("status")).toBeNull())
+  })
+
   it("uses opacity-only reduced motion and renders top and bottom classes", () => {
     const { container, rerender } = renderToaster({
       position: "bottom-center",

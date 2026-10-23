@@ -63,6 +63,7 @@ export function NotchPlayground() {
   const [type, setType] = useState<NotchToastType>("success")
   const [title, setTitle] = useState(titleByType.success)
   const [duration, setDuration] = useState(3600)
+  const [dismissible, setDismissible] = useState(false)
   const [example, setExample] = useState<PlaygroundExample>("toast")
   const replacementTimer = useRef<number | null>(null)
 
@@ -79,6 +80,7 @@ export function NotchPlayground() {
     const options = {
       id: "playground-toast",
       duration,
+      dismissible,
       action:
         nextType === "error"
           ? {
@@ -161,6 +163,7 @@ export function NotchPlayground() {
               duration,
             }),
         },
+        dismissible: true,
       })
       replacementTimer.current = null
     }, 280)
@@ -173,11 +176,11 @@ export function NotchPlayground() {
       return `${toaster}\n\ntoast.promise(saveChanges(), {\n  loading: "${promiseTitles.loading}",\n  success: "${promiseTitles.success}",\n  error: "${promiseTitles.error}",\n  duration: ${duration},\n})`
     }
 
-    return `${toaster}\n\ntoast.${type === "default" ? "" : `${type}.`}("${title}", {\n  duration: ${duration},\n})`.replace(
+    return `${toaster}\n\ntoast.${type === "default" ? "" : `${type}.`}("${title}", {\n  duration: ${duration},\n  dismissible: ${dismissible},\n})`.replace(
       "toast.(",
       "toast("
     )
-  }, [animation, duration, example, mode, position, title, type])
+  }, [animation, dismissible, duration, example, mode, position, title, type])
 
   return (
     <section
@@ -195,13 +198,11 @@ export function NotchPlayground() {
       </div>
       <NotchToaster position={position} mode={mode} animation={animation} />
 
-      <div className="mx-auto w-full min-w-0 max-w-5xl px-4 sm:px-6">
+      <div className="mx-auto w-full max-w-5xl min-w-0 px-4 sm:px-6">
         <div className="grid min-w-0 gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-10">
           <section className="min-w-0 pt-7">
             <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-lg font-medium">
-                Examples
-              </h2>
+              <h2 className="text-lg font-medium">Examples</h2>
               <span className="text-xs text-muted-foreground">
                 Click to preview
               </span>
@@ -243,7 +244,7 @@ export function NotchPlayground() {
                   Reset toast
                 </ExampleButton>
               </div>
-              <div className="rounded-xl border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+              <div className="rounded-xl border border-border bg-muted p-4 text-sm text-muted-foreground">
                 Promise examples morph from a loader into their final state.
                 Every toast dismisses after the selected duration.
               </div>
@@ -253,9 +254,8 @@ export function NotchPlayground() {
           <section className="min-w-0 pt-7">
             <div>
               <h2 className="text-lg font-medium">Builder</h2>
-
             </div>
-            <div className="mt-7 min-w-0 rounded-2xl border border-border bg-background p-4 shadow-sm sm:p-6">
+            <div className="mt-7 min-w-0 rounded-xl border border-border bg-background p-4 sm:p-6">
               <div className="space-y-6 sm:space-y-7">
                 <Control label="Position">
                   <Segmented
@@ -297,6 +297,17 @@ export function NotchPlayground() {
                   decimals={1}
                   ticks={7}
                 />
+                <Control label="Close button">
+                  <Segmented
+                    options={["hidden", "visible"] as const}
+                    value={dismissible ? "visible" : "hidden"}
+                    onChange={(value) => setDismissible(value === "visible")}
+                  />
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Let people dismiss this toast with the cross button or the
+                    Escape key.
+                  </p>
+                </Control>
                 <CodeBlock className="min-w-0">
                   <CodeBlockHeader>
                     <CodeBlockGroup>

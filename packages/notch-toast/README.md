@@ -11,6 +11,32 @@ pnpm add notch-toast
 pnpm add motion
 ```
 
+### shadcn/ui
+
+Install a thin wrapper in `components/ui` (it installs the package and Motion):
+
+```bash
+npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json
+```
+
+The wrapper exports `NotchToaster` and `notchToast`.
+
+### AI agents
+
+Install the bundled instructions for coding agents from the skills registry:
+
+```bash
+npx skills add Devsethi3/notch-toast
+```
+
+Or install the bundled skill directly:
+
+```bash
+npx notch-toast add-skill
+npx notch-toast add-skill --agents
+npx notch-toast add-skill --dir .cursor/skills/notch-toast
+```
+
 ## Setup
 
 Mount one toaster near your application root.

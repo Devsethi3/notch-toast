@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "notch-toaster",
+  "type": "registry:ui",
+  "title": "Notch Toaster",
+  "description": "A thin shadcn wrapper around notch-toast.",
+  "dependencies": ["notch-toast", "motion"],
+  "files": [
+    {
+      "path": "components/ui/notch-toaster.tsx",
+      "content": "\"use client\"\n\nimport { NotchToaster, toast } from \"notch-toast\"\n\nexport { NotchToaster, toast as notchToast }\n",
+      "type": "registry:ui"
+    }
+  ]
+}

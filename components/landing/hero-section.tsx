@@ -3,6 +3,7 @@ import Link from "next/link"
 import { CodeBlockTabsPkg } from "@/components/code-block/blocks/copy-with-tabs-package-manager"
 import { DotField } from "@/components/dot-field"
 import { NotchPlayground } from "@/components/landing/notch-playground"
+import { IntegrationSection } from "@/components/landing/integration-section"
 import { SiteHeader } from "@/components/landing/site-header"
 import { Button } from "@/components/ui/button"
 import { NoiseBackground } from "../ui/noise-background"
@@ -27,7 +28,7 @@ export function HeroSection() {
           <div className="max-w-2xl pb-16 text-left">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground shadow-xs">
               <span className="size-1.5 rounded-full bg-emerald-500" />
-              v0.1.0
+              v0.2.0
             </span>
             <h1 className="mt-3 text-3xl font-medium tracking-tight text-balance">
               Notifications that morph beautifully
@@ -78,6 +79,7 @@ export function HeroSection() {
         </div>
       </section>
       <NotchPlayground />
+      <IntegrationSection />
     </>
   )
 }
