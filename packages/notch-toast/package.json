@@ -24,7 +24,7 @@
     "SKILL.md"
   ],
   "bin": {
-    "notch-toast": "./bin/notch-toast.mjs"
+    "notch-toast": "bin/notch-toast.mjs"
   },
   "exports": {
     ".": {
