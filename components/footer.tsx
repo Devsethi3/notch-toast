@@ -16,7 +16,7 @@ const socialLinks = [
     icon: <XIcon />,
   },
   {
-    href: "https://github.com/Devsethi3",
+    href: "https://github.com/Devsethi3/notch-toast",
     label: "Github",
     icon: <GithubIcon />,
   },

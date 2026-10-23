@@ -1,11 +1,13 @@
 import Link from "next/link"
 
 import { CodeBlockTabsPkg } from "@/components/code-block/blocks/copy-with-tabs-package-manager"
+import { CopyButton } from "@/components/code-block/copy-button"
 import { DotField } from "@/components/dot-field"
 import { NotchPlayground } from "@/components/landing/notch-playground"
 import { IntegrationSection } from "@/components/landing/integration-section"
 import { SiteHeader } from "@/components/landing/site-header"
 import { Button } from "@/components/ui/button"
+import { AGENTS_PROMPT } from "@/lib/agents"
 import { NoiseBackground } from "../ui/noise-background"
 
 export function HeroSection() {
@@ -50,8 +52,10 @@ export function HeroSection() {
                 ]}
               >
                 <Link
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-full w-full items-center gap-2 rounded-md bg-linear-to-r from-neutral-100 via-neutral-100 to-white px-4 py-1 text-sm text-black shadow-[0px_2px_0px_0px_var(--color-neutral-50)_inset,0px_0.5px_1px_0px_var(--color-neutral-400)] transition-all duration-100 active:scale-98 lg:py-1.25 dark:from-black dark:via-black dark:to-neutral-900 dark:text-white dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]"
-                  href="https://github.com"
+                  href="https://github.com/Devsethi3/notch-toast"
                 >
                   GitHub
                 </Link>
@@ -64,12 +68,14 @@ export function HeroSection() {
                   "rgb(255, 200, 100)",
                 ]}
               >
-                <Link
+                <CopyButton
+                  content={AGENTS_PROMPT}
+                  aria-label="Copy AGENTS.md instructions"
+                  title="Copy AGENTS.md instructions"
                   className="flex h-full w-full items-center gap-2 rounded-md bg-linear-to-r from-neutral-100 via-neutral-100 to-white px-4 py-1 text-sm text-black shadow-[0px_2px_0px_0px_var(--color-neutral-50)_inset,0px_0.5px_1px_0px_var(--color-neutral-400)] transition-all duration-100 active:scale-98 lg:py-1.25 dark:from-black dark:via-black dark:to-neutral-900 dark:text-white dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]"
-                  href="/sponsor"
                 >
                   agent.md
-                </Link>
+                </CopyButton>
               </NoiseBackground>
               <Button asChild>
                 <Link href="/docs">Read the docs</Link>

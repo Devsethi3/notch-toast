@@ -11,6 +11,41 @@ import { CodeBlockTabsPkg } from "@/components/code-block/blocks/copy-with-tabs-
 import { DocsSidebar } from "@/components/docs/docs-sidebar"
 import { SiteHeader } from "@/components/landing/site-header"
 import type { Languages } from "@/utils/shiki/highlight"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Documentation",
+  description:
+    "Install and use Notch Toast, the open-source React toast library with notch, floating, promise, and dismissible notification support.",
+  alternates: {
+    canonical: "/docs",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "Notch Toast",
+    locale: "en_US",
+    title: "Notch Toast Documentation",
+    description:
+      "Install and use Notch Toast, the open-source React toast library with notch, floating, promise, and dismissible notification support.",
+    url: "/docs",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Notch Toast, beautiful toast notifications for React",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notch Toast Documentation",
+    description:
+      "Install and use Notch Toast, the open-source React toast library with notch, floating, promise, and dismissible notification support.",
+    creator: "@imsethidev",
+    images: ["/og-image.png"],
+  },
+}
 
 type CodeBlockProps = {
   children: string

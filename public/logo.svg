@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1254" height="1254" viewBox="0 0 1254 1254" fill="none" role="img" aria-label="Notch layered glass logo">
+<defs>
+ <linearGradient id="bottom" x1="320" y1="600" x2="850" y2="1035" gradientUnits="userSpaceOnUse"><stop stop-color="#666973"/><stop offset=".24" stop-color="#454851"/><stop offset=".63" stop-color="#24262D"/><stop offset="1" stop-color="#090A0E"/></linearGradient>
+ <linearGradient id="bottomSide" x1="625" y1="894" x2="625" y2="1042" gradientUnits="userSpaceOnUse"><stop stop-color="#282A31"/><stop offset="1" stop-color="#090A0E"/></linearGradient>
+ <linearGradient id="bottomRim" x1="252" y1="661" x2="1003" y2="897" gradientUnits="userSpaceOnUse"><stop stop-color="#B3B5BD" stop-opacity=".58"/><stop offset=".47" stop-color="#8B8D96" stop-opacity=".25"/><stop offset="1" stop-color="#C7C9D1" stop-opacity=".42"/></linearGradient>
+ <linearGradient id="glass" x1="420" y1="265" x2="795" y2="846" gradientUnits="userSpaceOnUse"><stop stop-color="#F7F8FB"/><stop offset=".18" stop-color="#E7E9EF"/><stop offset=".43" stop-color="#C6CBD5"/><stop offset=".66" stop-color="#8B92A2"/><stop offset=".83" stop-color="#A6ADB9"/><stop offset="1" stop-color="#F0F1F6"/></linearGradient>
+ <radialGradient id="softTop" cx="0" cy="0" r="1" gradientTransform="translate(620 300) rotate(90) scale(500 550)" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF" stop-opacity=".79"/><stop offset=".5" stop-color="#FFFFFF" stop-opacity=".13"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+ <linearGradient id="diagonal" x1="355" y1="745" x2="1000" y2="495" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF" stop-opacity=".05"/><stop offset=".52" stop-color="#F9FAFF" stop-opacity=".1"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".46"/></linearGradient>
+ <linearGradient id="glassRim" x1="360" y1="335" x2="913" y2="805" gradientUnits="userSpaceOnUse"><stop stop-color="#FFFFFF" stop-opacity=".94"/><stop offset=".4" stop-color="#F9FAFF" stop-opacity=".35"/><stop offset=".7" stop-color="#F5F6FA" stop-opacity=".58"/><stop offset="1" stop-color="#FFFFFF" stop-opacity=".95"/></linearGradient>
+ <filter id="ground" x="170" y="560" width="915" height="535" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="21"/></filter>
+ <filter id="contact" x="160" y="540" width="935" height="400" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="15"/></filter>
+ <filter id="softGlow" x="190" y="218" width="860" height="680" color-interpolation-filters="sRGB"><feGaussianBlur stdDeviation="5"/></filter>
+ <path id="upper" d="M568 281 C601 257 628 251 657 267 C675 275 693 288 713 302 L978 490 C1021 521 1032 551 1003 586 C989 605 973 620 951 637 L716 810 C664 848 631 859 586 835 C567 826 551 813 530 798 L274 607 C236 579 224 551 247 515 C258 497 276 482 300 463 Z"/>
+ <clipPath id="clip"><use href="#upper"/></clipPath>
+</defs>
+<!-- Lower slab: rounded diamond top and visible vertical thickness -->
+<path d="M319 683 L548 536 C591 508 640 506 685 534 L966 704 C1006 729 1015 752 1005 791 C999 811 985 824 959 842 L699 1005 C651 1035 611 1042 563 1014 L282 844 C249 823 238 805 241 772 C243 741 265 719 319 683Z" fill="#0B0C10" opacity=".35" filter="url(#ground)"/>
+<path d="M248 759 C245 786 250 803 282 824 L563 992 C612 1022 653 1019 702 988 L963 825 C994 805 1006 789 1007 759 L1004 795 C1001 816 983 831 962 846 L703 1010 C655 1042 612 1044 561 1014 L281 846 C254 829 243 814 242 786Z" fill="url(#bottomSide)"/>
+<path d="M318 676 L547 525 C594 495 642 495 690 524 L964 691 C1012 721 1022 747 992 782 C981 796 966 808 947 821 L701 976 C653 1007 609 1010 563 981 L281 815 C239 790 227 763 251 733 C263 718 284 698 318 676Z" fill="url(#bottom)" stroke="url(#bottomRim)" stroke-width="3"/>
+<path d="M251 733 C263 718 284 698 318 676 L547 525 C594 495 642 495 690 524 L964 691" stroke="#D5D7DE" stroke-opacity=".2" stroke-width="3"/>
+<!-- Ambient shadow between the two independent layers -->
+<path d="M302 510 L565 315 Q624 274 684 315 L966 516 Q1022 559 964 607 L718 799 Q626 871 544 805 L278 611 Q229 568 302 510Z" fill="#08090C" opacity=".33" filter="url(#contact)"/>
+<!-- Glass tile, perfectly centered on the same vertical axis as the dark slab -->
+<use href="#upper" fill="#DCE0E8" opacity=".5" filter="url(#softGlow)"/>
+<use href="#upper" fill="url(#glass)" stroke="url(#glassRim)" stroke-width="7" stroke-linejoin="round"/>
+<g clip-path="url(#clip)">
+ <rect x="220" y="248" width="815" height="620" fill="url(#softTop)"/>
+ <path d="M170 773 C430 713 687 658 1050 441 L1072 695 C739 870 456 905 170 870Z" fill="url(#diagonal)" opacity=".72"/>
+ <path d="M206 701 C481 771 733 693 1060 472" stroke="#FFFFFF" stroke-opacity=".11" stroke-width="3"/>
+</g>
+<path d="M300 464 L568 281 C601 257 628 251 657 267 C675 275 693 288 713 302 L978 490" stroke="#FFFFFF" stroke-opacity=".48" stroke-width="3.2" stroke-linecap="round"/>
+<path d="M274 607 L530 798 C551 813 567 826 586 835 C631 859 664 848 716 810 L951 637" stroke="#FFFFFF" stroke-opacity=".33" stroke-width="2.4" stroke-linecap="round"/>
+</svg>
