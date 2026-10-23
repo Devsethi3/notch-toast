@@ -1,3 +1,4 @@
+import { CodeblockShiki } from "@/components/code-block/client/shiki"
 import {
   CodeBlock,
   CodeBlockContent,
@@ -25,9 +26,11 @@ function CommandBlock({ command }: { command: string }) {
         <CopyButton content={command} />
       </CodeBlockHeader>
       <CodeBlockContent>
-        <pre className="overflow-x-auto px-4 py-3 font-mono text-sm leading-6 text-foreground">
-          <code>{command}</code>
-        </pre>
+        <CodeblockShiki
+          code={command}
+          language="bash"
+          className="text-sm leading-6 text-foreground"
+        />
       </CodeBlockContent>
     </CodeBlock>
   )
@@ -35,9 +38,9 @@ function CommandBlock({ command }: { command: string }) {
 
 export function IntegrationSection() {
   return (
-    <section className="pt-20 pb-10 text-foreground">
-      <div className="mx-auto grid max-w-5xl gap-12 px-6">
-        <section className="space-y-5">
+    <section className="min-w-0 overflow-x-clip pt-20 pb-10 text-foreground">
+      <div className="mx-auto grid w-full max-w-5xl min-w-0 gap-12 px-6">
+        <section className="min-w-0 space-y-5">
           <p className="font-mono text-sm font-medium text-muted-foreground">
             02
           </p>
@@ -57,7 +60,7 @@ export function IntegrationSection() {
           </p>
         </section>
 
-        <section className="space-y-5">
+        <section className="min-w-0 space-y-5">
           <p className="font-mono text-sm font-medium text-muted-foreground">
             03
           </p>

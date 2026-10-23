@@ -15,6 +15,7 @@ const CopyButton = ({
   content,
   iconSize = 14,
   className,
+  children,
   ...props
 }: CopyButtonProps) => {
   const [isCopied, setIsCopied] = useState<boolean>(false)
@@ -38,6 +39,7 @@ const CopyButton = ({
       title="Copy to clipboard"
       className={cn(
         "cursor-pointer",
+        "inline-flex items-center gap-2",
         "transition-colors duration-200 ease-in-out",
         "text-neutral-600 dark:text-neutral-400",
         "hover:text-neutral-950 hover:dark:text-neutral-50",
@@ -46,6 +48,7 @@ const CopyButton = ({
       onClick={handleCopy}
       {...props}
     >
+      {children}
       {isCopied ? (
         <CheckIcon
           size={iconSize}

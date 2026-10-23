@@ -144,6 +144,18 @@ const options = `toast.error("Unable to save changes", {
   },
 })`
 
+const dismissibleOptions = [
+  "// Show the close “×” button and allow Escape to dismiss.",
+  'toast.success("Profile saved", {',
+  "  dismissible: true,",
+  "})",
+  "",
+  "// Keep the toast visible without a close button.",
+  'toast.success("Saving in the background", {',
+  "  dismissible: false,",
+  "})",
+].join("\n")
+
 const promise = `async function saveChanges() {
   const response = await fetch("/api/settings", { method: "POST" })
   if (!response.ok) throw new Error("Save failed")
@@ -194,7 +206,7 @@ export default function DocsPage() {
     <main className="min-h-svh bg-background text-foreground">
       <SiteHeader sticky />
 
-      <div className="mx-auto grid max-w-5xl items-start gap-12 px-6 py-7 lg:grid-cols-[180px_minmax(0,1fr)]">
+      <div className="mx-auto grid max-w-5xl items-start gap-12 px-4 py-7 sm:px-6 lg:grid-cols-[180px_minmax(0,1fr)]">
         <DocsSidebar />
 
         <div className="min-w-0">
@@ -405,6 +417,26 @@ export default function DocsPage() {
                 for short confirmations; make important feedback persistent.
               </SectionHeading>
               <DocumentationCodeBlock>{options}</DocumentationCodeBlock>
+              <div className="space-y-4 rounded-xl border border-border bg-muted/20 p-5">
+                <div>
+                  <h3 className="font-medium">Close button: dismissible</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    <code>dismissible</code> is a boolean. Set it to{" "}
+                    <code>true</code> to show the close × button and allow the
+                    Escape key to dismiss the toast. Set it to{" "}
+                    <code>false</code> to hide the close button and disable
+                    Escape dismissal for that toast.
+                  </p>
+                </div>
+                <DocumentationCodeBlock label="Dismissible toast">
+                  {dismissibleOptions}
+                </DocumentationCodeBlock>
+                <p className="text-sm leading-6 text-muted-foreground">
+                  Errors, warnings, and loading toasts default to{" "}
+                  <code>dismissible: true</code>. Success, info, and default
+                  toasts default to <code>dismissible: false</code>.
+                </p>
+              </div>
               <div className="grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
                 <div className="bg-background p-5">
                   <code className="text-sm font-medium">id</code>
@@ -422,8 +454,9 @@ export default function DocsPage() {
                 <div className="bg-background p-5">
                   <code className="text-sm font-medium">dismissible</code>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    Shows a close button when true. Errors, warnings, and
-                    loading states default to true.
+                    Boolean. <code>true</code> shows the close button;{" "}
+                    <code>false</code> hides it. Errors, warnings, and loading
+                    states default to <code>true</code>.
                   </p>
                 </div>
                 <div className="bg-background p-5">

@@ -21,6 +21,7 @@ import {
   type NotchPosition,
   type NotchToastType,
 } from "notch-toast"
+import { Button } from "../ui/button"
 
 const toastTypes: NotchToastType[] = [
   "default",
@@ -369,13 +370,14 @@ function ExampleButton({
   onClick: () => void
 }) {
   return (
-    <button
+    <Button
       type="button"
       onClick={onClick}
-      className="rounded-full bg-muted px-3 py-2 text-sm transition-colors hover:bg-muted/70"
+      variant="secondary"
+      className="rounded-md!"
     >
       {children}
-    </button>
+    </Button>
   )
 }
 
@@ -395,7 +397,7 @@ function Segmented<T extends string>({
           type="button"
           key={option}
           onClick={() => onChange(option)}
-          className={`rounded-full border px-3 py-1.5 text-sm capitalize transition-colors ${value === option ? "border-foreground bg-foreground text-background" : "border-border bg-background hover:bg-muted"}`}
+          className={`rounded-md border px-3 py-1.5 text-sm capitalize transition-colors ${value === option ? "border-foreground bg-foreground text-background" : "border-border bg-background hover:bg-muted"}`}
         >
           {option.replace("-", " ")}
         </button>
