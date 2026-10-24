@@ -16,7 +16,7 @@ export function SiteHeader({ sticky = false }: { sticky?: boolean }) {
       className={cn(
         "z-20 w-full",
         sticky &&
-          "sticky top-0 border-b border-border bg-background/90 backdrop-blur"
+        "sticky top-0 border-b border-border bg-background/90 backdrop-blur"
       )}
     >
       <div className="mx-auto flex h-16 w-full max-w-5xl items-center justify-between px-4 sm:px-6">
@@ -53,7 +53,10 @@ export function SiteHeader({ sticky = false }: { sticky?: boolean }) {
             </Link>
           </Button>
           <Button asChild size="sm">
-            <Link href="https://github.com" aria-label="GitHub">
+            <Link href="https://github.com/Devsethi3/notch-toast"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub">
               GitHub
             </Link>
           </Button>

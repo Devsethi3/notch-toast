@@ -9,6 +9,7 @@ import { SiteHeader } from "@/components/landing/site-header"
 import { Button } from "@/components/ui/button"
 import { AGENTS_PROMPT } from "@/lib/agents"
 import { NoiseBackground } from "../ui/noise-background"
+import Image from "next/image"
 
 export function HeroSection() {
   return (
@@ -44,7 +45,7 @@ export function HeroSection() {
             </div>
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <NoiseBackground
-                containerClassName="hidden w-fit rounded-lg p-0.75 sm:block"
+                containerClassName="w-fit rounded-lg p-0.75"
                 gradientColors={[
                   "rgb(255, 100, 150)",
                   "rgb(100, 150, 255)",
@@ -54,13 +55,14 @@ export function HeroSection() {
                 <Link
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-full w-full items-center gap-2 rounded-md bg-linear-to-r from-neutral-100 via-neutral-100 to-white px-4 py-1 text-sm text-black shadow-[0px_2px_0px_0px_var(--color-neutral-50)_inset,0px_0.5px_1px_0px_var(--color-neutral-400)] transition-all duration-100 active:scale-98 lg:py-1.25 dark:from-black dark:via-black dark:to-neutral-900 dark:text-white dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]"
-                  href="https://github.com/Devsethi3/notch-toast"
+                  className="flex h-full w-full font-medium items-center gap-2 rounded-md bg-linear-to-r from-neutral-100 via-neutral-100 to-white px-4 py-1 text-sm text-black shadow-[0px_2px_0px_0px_var(--color-neutral-50)_inset,0px_0.5px_1px_0px_var(--color-neutral-400)] transition-all duration-100 active:scale-98 lg:py-1.25 dark:from-black dark:via-black dark:to-neutral-900 dark:text-white dark:shadow-[0px_1px_0px_0px_var(--color-neutral-950)_inset,0px_1px_0px_0px_var(--color-neutral-800)]"
+                  href="https://www.npmjs.com/package/notch-toast"
                 >
-                  GitHub
+                  <Image src='/npm.svg' alt='npm' width={12} height={12} />
+                  npm
                 </Link>
               </NoiseBackground>
-              <NoiseBackground
+              {/* <NoiseBackground
                 containerClassName="w-fit rounded-lg p-0.75 sm:hidden"
                 gradientColors={[
                   "rgb(255, 100, 150)",
@@ -76,7 +78,7 @@ export function HeroSection() {
                 >
                   agent.md
                 </CopyButton>
-              </NoiseBackground>
+              </NoiseBackground> */}
               <Button asChild>
                 <Link href="/docs">Read the docs</Link>
               </Button>
