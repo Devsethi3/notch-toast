@@ -7,9 +7,9 @@ import {
   CodeBlockIcon,
 } from "@/components/code-block/code-block"
 import { CopyButton } from "@/components/code-block/copy-button"
+import { REGISTRY_URL } from "@/lib/site"
 
-const shadcnCommand =
-  "npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json"
+const shadcnCommand = `npx shadcn@latest add ${REGISTRY_URL}`
 const skillsCommand = "npx skills add Devsethi3/notch-toast"
 const directSkillCommand = `npx notch-toast add-skill            # -> .claude/skills/notch-toast/SKILL.md
 npx notch-toast add-skill --agents   # also adds an AGENTS.md pointer

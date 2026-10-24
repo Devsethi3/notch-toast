@@ -10,7 +10,7 @@
     "motion"
   ],
   "license": "MIT",
-  "homepage": "https://notch-toast.vercel.app/",
+  "homepage": "https://notch.devsethi.me/",
   "sideEffects": false,
   "type": "module",
   "main": "./dist/index.js",

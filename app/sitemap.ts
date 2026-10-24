@@ -1,21 +1,20 @@
 import type { MetadataRoute } from "next"
-
-const siteUrl = "https://notch-toast.vercel.app"
+import { SITE_URL } from "@/lib/site"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: siteUrl,
+      url: SITE_URL,
       changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${siteUrl}/docs`,
+      url: `${SITE_URL}/docs`,
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/changelog`,
+      url: `${SITE_URL}/changelog`,
       changeFrequency: "weekly",
       priority: 0.7,
     },

@@ -12,7 +12,7 @@ pnpm add notch-toast motion
 For a shadcn project, install the local wrapper instead:
 
 ```bash
-npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json
+npx shadcn@latest add https://notch.devsethi.me/r/notch-toaster.json
 ```
 
 ## Required mount

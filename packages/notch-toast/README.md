@@ -16,7 +16,7 @@ pnpm add motion
 Install a thin wrapper in `components/ui` (it installs the package and Motion):
 
 ```bash
-npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json
+npx shadcn@latest add https://notch.devsethi.me/r/notch-toaster.json
 ```
 
 The wrapper exports `NotchToaster` and `notchToast`.
@@ -78,11 +78,7 @@ the active toast; reusing an ID with `toast.update()` morphs the active island
 in place.
 
 ```tsx
-<NotchToaster
-  position="bottom-center"
-  mode="attached"
-  animation="fluid"
-/>
+<NotchToaster position="bottom-center" mode="attached" animation="fluid" />
 ```
 
 `position` accepts `"top-center"` or `"bottom-center"`; `mode` accepts

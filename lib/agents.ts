@@ -1,2 +1,3 @@
-export const AGENTS_PROMPT =
-  "Read https://notch-toast.vercel.app/agents.md and follow it to install and use Notch Toast in this project."
+import { SITE_URL } from "@/lib/site"
+
+export const AGENTS_PROMPT = `Read ${SITE_URL}/agents.md and follow it to install and use Notch Toast in this project.`

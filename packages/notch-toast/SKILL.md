@@ -16,7 +16,7 @@ pnpm add notch-toast motion
 For a shadcn project, install the wrapper instead:
 
 ```bash
-npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json
+npx shadcn@latest add https://notch.devsethi.me/r/notch-toaster.json
 ```
 
 ## Required mount
@@ -28,7 +28,11 @@ point includes the client boundary.
 ```tsx
 import { NotchToaster } from "notch-toast"
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   return (
     <html lang="en">
       <body>
@@ -66,11 +70,7 @@ any toast. Use `toast.dismiss(id)` for programmatic dismissal.
 ## Configure once
 
 ```tsx
-<NotchToaster
-  position="bottom-center"
-  mode="floating"
-  animation="smooth"
-/>
+<NotchToaster position="bottom-center" mode="floating" animation="smooth" />
 ```
 
 Do not mount more than one toaster. The package injects its component styles;

@@ -4,15 +4,15 @@ import type { Metadata, Viewport } from "next"
 import "./globals.css"
 import { MotionProvider } from "@/components/motion-provider"
 import { ThemeProvider } from "@/components/theme-provider"
+import { SITE_URL } from "@/lib/site"
 import { cn } from "@/lib/utils"
 
-const siteUrl = "https://notch-toast.vercel.app"
 const siteTitle = "Notch Toast - Beautiful React Toast Notifications"
 const siteDescription =
   "Notch Toast is an open-source React toast library with smooth morphing, promise states, and elegant notch or floating notifications for modern web apps."
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: siteTitle,
     template: "%s | Notch Toast",
@@ -97,7 +97,7 @@ const structuredData = {
   "@type": "SoftwareSourceCode",
   name: "Notch Toast",
   description: siteDescription,
-  url: siteUrl,
+  url: SITE_URL,
   codeRepository: "https://github.com/Devsethi3/notch-toast",
   license: "https://opensource.org/license/mit/",
   programmingLanguage: ["TypeScript", "React"],

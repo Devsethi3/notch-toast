@@ -1,11 +1,11 @@
 <div align="center">
   <img src="public/logo.svg" alt="Notch Toast Logo" width="120" height="120" />
 
-  # Notch Toast
+# Notch Toast
 
-  An open-source React toast library that turns notifications into a polished, morphing notch or floating surface.
+An open-source React toast library that turns notifications into a polished, morphing notch or floating surface.
 
-[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-black?style=for-the-badge)](https://notch-toast.vercel.app)
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Visit_Site-black?style=for-the-badge)](https://notch.devsethi.me)
 [![GitHub Stars](https://img.shields.io/github/stars/Devsethi3/notch-toast?style=for-the-badge&logo=github&color=yellow)](https://github.com/Devsethi3/notch-toast)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](./LICENSE)
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg?style=for-the-badge)](./CODE_OF_CONDUCT.md)
@@ -110,14 +110,14 @@ toast.error("Unable to save changes")
 toast.loading("Uploading file")
 ```
 
-| Type | Default duration | Dismissible by default |
-| --- | ---: | :---: |
-| `default` | 3600 ms | No |
-| `success` | 3600 ms | No |
-| `info` | 3600 ms | No |
-| `warning` | Persistent | Yes |
-| `error` | Persistent | Yes |
-| `loading` | Persistent | Yes |
+| Type      | Default duration | Dismissible by default |
+| --------- | ---------------: | :--------------------: |
+| `default` |          3600 ms |           No           |
+| `success` |          3600 ms |           No           |
+| `info`    |          3600 ms |           No           |
+| `warning` |       Persistent |          Yes           |
+| `error`   |       Persistent |          Yes           |
+| `loading` |       Persistent |          Yes           |
 
 Set `duration: 0` to keep any toast visible until it is dismissed or updated.
 
@@ -134,12 +134,12 @@ toast.error("Could not save your changes", {
 })
 ```
 
-| Option | Type | Description |
-| --- | --- | --- |
-| `id` | `string` | A stable ID for updating or dismissing a toast. |
-| `duration` | `number` | Time in milliseconds before dismissal; `0` keeps it open. |
-| `dismissible` | `boolean` | Shows the close control. Defaults to `true` for error, warning, and loading toasts. |
-| `action` | `{ label, onClick }` | Adds an action button to the toast. |
+| Option        | Type                 | Description                                                                         |
+| ------------- | -------------------- | ----------------------------------------------------------------------------------- |
+| `id`          | `string`             | A stable ID for updating or dismissing a toast.                                     |
+| `duration`    | `number`             | Time in milliseconds before dismissal; `0` keeps it open.                           |
+| `dismissible` | `boolean`            | Shows the close control. Defaults to `true` for error, warning, and loading toasts. |
+| `action`      | `{ label, onClick }` | Adds an action button to the toast.                                                 |
 
 ### Update or dismiss
 
@@ -178,18 +178,14 @@ await toast.promise(saveSettings(), {
 ### Configure the toaster
 
 ```tsx
-<NotchToaster
-  position="bottom-center"
-  mode="floating"
-  animation="smooth"
-/>
+<NotchToaster position="bottom-center" mode="floating" animation="smooth" />
 ```
 
-| Prop | Values | Default |
-| --- | --- | --- |
-| `position` | `top-center`, `bottom-center` | `top-center` |
-| `mode` | `attached`, `floating` | `attached` |
-| `animation` | `fluid`, `gooey`, `smooth`, `subtle`, `snappy` | `fluid` |
+| Prop        | Values                                         | Default      |
+| ----------- | ---------------------------------------------- | ------------ |
+| `position`  | `top-center`, `bottom-center`                  | `top-center` |
+| `mode`      | `attached`, `floating`                         | `attached`   |
+| `animation` | `fluid`, `gooey`, `smooth`, `subtle`, `snappy` | `fluid`      |
 
 Mount exactly one `NotchToaster` per app. The component uses a singleton,
 latest-toast-wins store.
@@ -208,7 +204,7 @@ Install the thin local wrapper in `components/ui`. The registry handles the
 package and Motion dependency:
 
 ```bash
-npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json
+npx shadcn@latest add https://notch.devsethi.me/r/notch-toaster.json
 ```
 
 Then mount the generated `NotchToaster` once and use `notchToast` from the
@@ -230,12 +226,12 @@ npx notch-toast add-skill --agents
 npx notch-toast add-skill --dir .cursor/skills/notch-toast
 ```
 
-The full guidance is available at [agents.md](https://notch-toast.vercel.app/agents.md).
+The full guidance is available at [agents.md](https://notch.devsethi.me/agents.md).
 
 ## Documentation and support
 
-- [Documentation](https://notch-toast.vercel.app/docs)
-- [Changelog](https://notch-toast.vercel.app/changelog)
+- [Documentation](https://notch.devsethi.me/docs)
+- [Changelog](https://notch.devsethi.me/changelog)
 - [Report a bug or request a feature](https://github.com/Devsethi3/notch-toast/issues)
 - [Security policy](./SECURITY.md)
 

@@ -10,6 +10,7 @@ import { CopyButton } from "@/components/code-block/copy-button"
 import { CodeBlockTabsPkg } from "@/components/code-block/blocks/copy-with-tabs-package-manager"
 import { DocsSidebar } from "@/components/docs/docs-sidebar"
 import { SiteHeader } from "@/components/landing/site-header"
+import { REGISTRY_URL } from "@/lib/site"
 import type { Languages } from "@/utils/shiki/highlight"
 import type { Metadata } from "next"
 
@@ -128,8 +129,7 @@ export function SaveButton() {
   )
 }`
 
-const shadcnInstall =
-  "npx shadcn@latest add https://notch-toast.vercel.app/r/notch-toaster.json"
+const shadcnInstall = `npx shadcn@latest add ${REGISTRY_URL}`
 
 const shadcnUsage = [
   "// app/layout.tsx",

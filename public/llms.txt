@@ -2,9 +2,9 @@
 
 > An open-source React toast library with smooth notch and floating notifications.
 
-- Website: https://notch-toast.vercel.app
-- Documentation: https://notch-toast.vercel.app/docs
-- Changelog: https://notch-toast.vercel.app/changelog
+- Website: https://notch.devsethi.me
+- Documentation: https://notch.devsethi.me/docs
+- Changelog: https://notch.devsethi.me/changelog
 - Package: https://www.npmjs.com/package/notch-toast
 - Source: https://github.com/Devsethi3/notch-toast
 - Author: Dev Sethi (https://devsethi.site)
@@ -19,4 +19,4 @@ Mount `NotchToaster` once in the application layout, import `notch-toast/styles.
 
 ## More guidance
 
-Read https://notch-toast.vercel.app/agents.md for coding-agent installation and usage guidance. The shadcn registry component is available at https://notch-toast.vercel.app/r/notch-toaster.json.
+Read https://notch.devsethi.me/agents.md for coding-agent installation and usage guidance. The shadcn registry component is available at https://notch.devsethi.me/r/notch-toaster.json.
